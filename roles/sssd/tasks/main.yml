@@ -1,0 +1,3 @@
+---
+
+- include: append_to_sssd.yml

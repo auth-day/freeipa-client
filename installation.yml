@@ -1,0 +1,11 @@
+---
+
+- name: package install
+  become: true
+  hosts: v2
+
+  roles:
+#    - package_install
+#    - ipa-client
+    - sssd
+

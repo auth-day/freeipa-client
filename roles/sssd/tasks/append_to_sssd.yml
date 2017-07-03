@@ -1,0 +1,18 @@
+  - name: Changes in SSSD.conf file
+#    become: true
+    shell: "sed -i 's/{{ u_sub_domain }}/{{ sub_domain }}/g' /etc/sssd/sssd.conf \
+            sed -i 's/{{ u_domain }}/{{ domain }}/g' /etc/sssd/sssd.conf \
+            sed -i 's/domains = {{ sub_domain }}/domains = {{ sub_domain }},{{ domain }}/g' /etc/sssd/sssd.conf \
+            sed -i '/\\[nss\\]/a default_shell = /bin/bash' /etc/sssd/sssd.conf \
+            sed -i '/\\[pam\\]/a offline_credentials_expiration = 3' /etc/sssd/sssd.conf \
+            sed -i '/\\[sssd\\]/i offline_credentials_expiration = 3 \
+              cache_credentials = true \
+              account_cache_expiration = 7\
+              entry_cache_timeout = 14400' /etc/sssd/sssd.conf
+
+            sed -i '/\\[sudo\\]/a domains = {{ sub_domain }},{{ domain }}' /etc/sssd/sssd.conf"
+
+  - service:
+      name: sssd
+      state: restarted
+

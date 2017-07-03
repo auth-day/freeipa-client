@@ -1,0 +1,12 @@
+---
+
+- name: include vars
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "../vars/{{ ansible_os_family }}.yml"
+
+- name: install ipa 
+#  become: true
+  package:
+    name: "{{ ipa_client_name }}"
+    state: latest

@@ -1,0 +1,7 @@
+---
+#domain: ulmart.ru
+#sub_domain: nix.ulmart.ru
+#realm: NIX.ULMART.RU
+principal: host-enrollment
+password: host-enrollment
+#ntp: ntp.ulmart.ru
