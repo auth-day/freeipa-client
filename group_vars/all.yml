@@ -1,7 +1,7 @@
-u_sub_domain: NIX.ULMART.RU
-u_domain: ULMART.RU
-domain: ulmart.ru
-sub_domain: nix.ulmart.ru
-realm: NIX.ULMART.RU
-ntp: ntp.ulmart.ru
+u_sub_domain: SUB.DOMAIN.RU
+u_domain: DOMAIN.RU
+domain: domain.ru
+sub_domain: sub.domain.ru
+realm: SUB.DOMAIN.RU
+ntp: ntp.domain.ru
 

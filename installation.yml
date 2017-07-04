@@ -2,7 +2,7 @@
 
 - name: package install
   become: true
-  hosts: host-vm
+  hosts:
 
   roles:
     - package_install
