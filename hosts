@@ -7,3 +7,6 @@ vagrant3 ansible_user=vagrant
 #[vagrants]
 #10.254.70.110 ansible_user=vagrant
 #10.254.70.115 ansible_user=vagrant
+
+[host-vm]
+host-vm ansible_user=ulmartadmin

@@ -2,10 +2,10 @@
 
 - name: package install
   become: true
-  hosts: v2
+  hosts: host-vm
 
   roles:
-#    - package_install
-#    - ipa-client
+    - package_install
+    - ipa-client
     - sssd
 
