@@ -1,4 +1,3 @@
 ---
 
-- include: fqdn.yml
 - include: install_client.yml
