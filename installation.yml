@@ -1,8 +1,7 @@
 ---
 
-- name: package install
+- hosts: 
   become: true
-  hosts:
 
   roles:
     - package_install
