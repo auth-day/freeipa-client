@@ -1,8 +1,0 @@
----
-
-- name: include vars
-  include_vars: ../vars/vars.yml
-
-- name: Set hostname to FQDN 
-  shell: "hostnamectl set-hostname {{ inventory_hostname }}.{{ domain }}"
-
