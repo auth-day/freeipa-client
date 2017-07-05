@@ -1,19 +1,44 @@
-  - name: Changes in SSSD.conf file
-    shell: |
-      sed -i 's/{{ u_sub_domain }}/{{ sub_domain }}/g' /etc/sssd/sssd.conf \
-      sed -i 's/{{ u_domain }}/{{ domain }}/g' /etc/sssd/sssd.conf \
-      sed -i 's/domains = {{ sub_domain }}/domains = {{ sub_domain }},{{ domain }}/g' /etc/sssd/sssd.conf \
-      sed -i '/\\[nss\\]/a default_shell = /bin/bash' /etc/sssd/sssd.conf \
-      sed -i '/\\[pam\\]/a offline_credentials_expiration = 3' /etc/sssd/sssd.conf \
-      sed -i '/\\[sssd\\]/i offline_credentials_expiration = 3 \
-        cache_credentials = true \
-        account_cache_expiration = 7\
-        entry_cache_timeout = 14400' /etc/sssd/sssd.conf
+---
 
-      sed -i '/\\[sudo\\]/a domains = {{ sub_domain }},{{ domain }}' /etc/sssd/sssd.conf
-      exit 0
+   - name: add main domain
+     lineinfile:
+       path: /etc/sssd/sssd.conf
+       regexp: '^(.*)domains = {{ sub_domain }}'
+       line: 'domains = {{ sub_domain }}, {{ domain }}'
+       state: present
 
-  - service:
-      name: sssd
-      state: restarted
+   - name: pam offline credential expiration
+     lineinfile:
+       path: /etc/sssd/sssd.conf
+       line: 'offline_credentials_expiration = 3'
+       insertafter: '^\[pam\]'
 
+   - name: sssd offline credential expiration    
+     lineinfile:
+      path: /etc/sssd/sssd.conf
+      line: 'offline_credentials_expiration = 3 '
+      insertafter: '^\[sssd\]'
+
+   - name: sssd cache credentials
+     lineinfile:
+       path: /etc/sssd/sssd.conf
+       line: 'cache_credentials = true'
+       insertafter: '^\[sssd\]'
+
+   - name: sssd cache expiration
+     lineinfile:
+       path: /etc/sssd/sssd.conf
+       line: 'account_cache_expiration = 7'
+       insertafter: '^\[sssd\]'
+
+   - name: sssd timeout
+     lineinfile:
+       path: /etc/sssd/sssd.conf
+       line: 'entry_cache_timeout = 14400'
+       insertafter: '^\[sssd\]'
+
+   - name: sudo domains
+     lineinfile:
+       path: /etc/sssd/sssd.conf
+       line: 'domains = {{ sub_domain }},{{ domain }}'
+       insertafter: '^\[sudo\]'
