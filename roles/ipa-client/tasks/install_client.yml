@@ -8,6 +8,6 @@
     --realm={{ realm }} \
     -p {{ principal }} -w {{ password }} \
     --force-join --ntp-server={{ ntp }} -f -d -U \
-    --mkhomedir"
+    --mkhomedir --hostname={{ inventory_hostname }}.{{ domain }}"
 
     
