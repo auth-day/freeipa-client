@@ -1,3 +1,4 @@
 ---
 
 - include: append_to_sssd.yml
+- include: restart_sssd.yml
