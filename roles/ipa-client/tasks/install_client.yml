@@ -3,11 +3,18 @@
   - name: ipa client install variable include
     include_vars: "../vars/vars.yml"
 
+  - name: Getting hostname
+    shell: hostname
+    register: hostname_var
+
+  - set_fact:
+      hostname: "{{ hostname_var.stdout  }}"
+
   - name: install ipa client
     shell: "ipa-client-install --domain={{ sub_domain }} \
     --realm={{ realm }} \
     -p {{ principal }} -w {{ password }} \
     --force-join --ntp-server={{ ntp }} -f -d -U \
-    --mkhomedir --hostname={{ inventory_hostname }}.{{ domain }}"
+    --mkhomedir --hostname={{ hostname }}.{{ domain }}"
 
     
