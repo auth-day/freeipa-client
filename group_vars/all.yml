@@ -4,4 +4,5 @@ domain: domain.ru
 sub_domain: sub.domain.ru
 realm: SUB.DOMAIN.RU
 ntp: ntp.domain.ru
+ad_user: user.d.a
 
