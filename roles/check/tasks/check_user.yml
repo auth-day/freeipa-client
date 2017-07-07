@@ -1,0 +1,7 @@
+---
+
+- name: checking the AD user
+  command: id -a "{{ad_user}}@{{domain}}"
+  register: check
+
+- debug: msg="{{ check.stdout }}"
